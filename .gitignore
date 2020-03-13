@@ -25,3 +25,5 @@ directory_shifter-*.tar
 #ignore ElixirLS
 /.elixir_ls
 
+# Ignore configuration files
+config/dev.exs
