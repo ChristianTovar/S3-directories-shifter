@@ -1,4 +1,4 @@
-defmodule DirectoryShifter.Cloudinary do
+defmodule DirectoryShifter.Core.Cloudinary do
   @moduledoc """
   Contains interactions with the Cloudinary API.
   """
