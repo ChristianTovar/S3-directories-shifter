@@ -36,7 +36,7 @@ defmodule DirectoryShifter.Core.Aws do
 
   defp create_destiny_route(route) do
     extension = Regex.run(~r/\.\w*/, route) |> Enum.at(0)
-    folder_name = Regex.run(~r/\d*.jpg/, route) |> Enum.at(0) |> String.replace(~r/.jpg/, "")
+    folder_name = Regex.run(~r/\d*\.\w{3}/, route) |> Enum.at(0) |> String.replace(~r/\.\w{3}/, "")
 
     file_name =
       Regex.run(~r/\/upload\/\w*/, route) |> Enum.at(0) |> String.replace(~r/\/upload\//, "")
