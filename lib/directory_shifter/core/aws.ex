@@ -35,14 +35,20 @@ defmodule DirectoryShifter.Core.Aws do
   end
 
   defp create_destiny_route(route) do
-    extension = Regex.run(~r/\.\w*/, route) |> Enum.at(0)
-    folder_name = Regex.run(~r/\d*\.\w{3}/, route) |> Enum.at(0) |> String.replace(~r/\.\w{3}/, "")
+    extension = get_extension(route)
+    foldername = get_foldername(route)
+    filename = get_filename(route)
 
-    file_name =
-      Regex.run(~r/\/upload\/\w*/, route) |> Enum.at(0) |> String.replace(~r/\/upload\//, "")
-
-    "image/upload/v#{folder_name}/#{file_name <> extension}"
+    "image/upload/v#{foldername}/#{filename <> extension}"
   end
+
+  defp get_extension(route), do: Regex.run(~r/\.\w*/, route) |> Enum.at(0)
+
+  defp get_foldername(route),
+    do: Regex.run(~r/\d*\.\w*/, route) |> Enum.at(0) |> String.replace(~r/\.\w*/, "")
+
+  defp get_filename(route),
+    do: Regex.run(~r/\/upload\/\w*/, route) |> Enum.at(0) |> String.replace(~r/\/upload\//, "")
 
   defp origin_bucket, do: Application.fetch_env!(:directory_shifter, :origin_bucket)
   defp destiny_bucket, do: Application.fetch_env!(:directory_shifter, :destiny_bucket)
