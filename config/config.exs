@@ -1,12 +1,5 @@
 import Config
 
-config :cloudinex,
-  debug: false,
-  base_url: "BASE_URL",
-  api_key: "API_KEY",
-  secret: "SECRET",
-  cloud_name: "CLOUD_NAME"
-
 config :ex_aws,
   debug_requests: true,
   access_key_id: [{:system, "AWS_ACCESS_KEY_ID"}, :instance_role],
