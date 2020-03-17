@@ -30,6 +30,16 @@ defmodule DirectoryShifter.Core.Aws do
     |> ExAws.request()
   end
 
+  @doc """
+  Deletes the image for the specified bucket.
+  """
+  @spec delete_object(String.t()) :: {:ok, map()} | {:error, map()}
+  def delete_object(route) do
+    destiny_bucket()
+    |> ExAws.S3.delete_object(route)
+    |> ExAws.request()
+  end
+
   defp extract_only_route({:ok, %{body: %{contents: contents}}}) do
     Enum.map(contents, fn %{key: route} -> route end)
   end
