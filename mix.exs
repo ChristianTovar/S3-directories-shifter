@@ -29,7 +29,8 @@ defmodule DirectoryShifter.MixProject do
       {:jason, ">= 1.0.0"},
       {:ex_aws, "~> 2.0"},
       {:ex_aws_s3, "~> 2.0"},
-      {:sweet_xml, "~> 0.6"}
+      {:sweet_xml, "~> 0.6"},
+      {:benchee, "~> 1.0", only: :dev}
     ]
   end
 end
