@@ -19,7 +19,7 @@ defmodule DirectoryShifter do
 
       routes ->
         routes
-        |> Task.async_stream(&move_and_delete/1)
+        |> Task.async_stream(&move_and_delete/1, timeout: :infinity)
         |> Stream.run()
 
         start(acc + 1000)
